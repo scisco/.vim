@@ -28,6 +28,10 @@ let mapleader="\<SPACE>"
   "Activate linting
   autocmd! BufWritePost * Neomake
 
+  call remote#host#RegisterPlugin('python3', '/Users/ajdevseed/.config/nvim/bundle/deoplete.nvim/rplugin/python3/deoplete', [
+      \ {'sync': 1, 'name': '_deoplete', 'type': 'function', 'opts': {}},
+     \ ])
+
   let g:deoplete#enable_at_startup = 1
 " }
 
