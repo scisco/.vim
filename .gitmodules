@@ -19,3 +19,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/neomake"]
+	path = bundle/neomake
+	url = https://github.com/benekastah/neomake.git
