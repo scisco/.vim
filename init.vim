@@ -1,0 +1,1 @@
+/Users/ajdevseed/.vimrc
