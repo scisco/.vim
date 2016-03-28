@@ -24,6 +24,9 @@ let mapleader="\<SPACE>"
 
   set ttimeout
   set ttimeoutlen=100
+
+  "Activate linting
+  autocmd! BufWritePost * Neomake
 " }
 
 " Search {
@@ -214,17 +217,19 @@ let mapleader="\<SPACE>"
 " }
 
 " Python setup {
-    if has("unix")
-        let s:uname = system("uname")
-        let s:os_type = "linux"
-        let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
-        let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
-        if s:uname == "Darwin\n"
-            let s:os_type = "mac"
-            let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
-            let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
-        endif
+  if has("unix")
+    let s:uname = system("uname")
+    let s:os_type = "linux"
+    let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
+    let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
+    if s:uname == "Darwin\n"
+      let s:os_type = "mac"
+      let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
+      let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
     endif
+  endif
+
+  let g:neomake_python_enabled_makers=['pylint','pep8','python']
 " }
 
 " Keybindings {
@@ -239,6 +244,7 @@ let mapleader="\<SPACE>"
   vmap <Leader>P "+P
 
   map <C-n> :NERDTreeToggle<CR>
+  map <Leader>j :%!python -m json.tool<CR>
 " }
 
 " Plugin Settings {
