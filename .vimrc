@@ -70,7 +70,7 @@ let mapleader="\<SPACE>"
       " Broken down into easily includeable segments
       set statusline=%<%f\                     " Filename
       set statusline+=%w%h%m%r                 " Options
-      "set statusline+=%{fugitive#statusline()} " Git Hotness
+      set statusline+=%{fugitive#statusline()} " Git Hotness
       set statusline+=\ [%{&ff}/%Y]            " Filetype
       set statusline+=\ [%{getcwd()}]          " Current dir
       set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -86,8 +86,21 @@ let mapleader="\<SPACE>"
   set formatoptions+=o    " Continue comment marker in new lines.
   set textwidth=0         " Hard-wrap long lines as you type them.
   set expandtab           " Insert spaces when TAB is pressed.
-  set tabstop=4           " Render TABs using this many spaces.
-  set shiftwidth=4     " Indentation amount for < and > commands.
+  set tabstop=2           " Render TABs using this many spaces.
+  set shiftwidth=2     " Indentation amount for < and > commands.
+
+  autocmd Filetype html setlocal ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4
+  autocmd FileType python setlocal ts=4 sts=4 sw=4
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+  autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
+  autocmd bufread *.coffee set ft=coffee
+  autocmd bufread *.less set ft=less
+  autocmd bufread *.md set ft=markdown
+  autocmd bufread Cakefile set ft=coffee
+  autocmd bufread *.pp set ft=ruby
+  autocmd bufread *.conf set ft=dosini
 
   set noerrorbells        " No beeps.
   set modeline            " Enable modeline.
@@ -197,6 +210,21 @@ let mapleader="\<SPACE>"
   " Make HOME and END behave like shell
   inoremap <C-E> <End>
   inoremap <C-A> <Home>
+
+" }
+
+" Python setup {
+    if has("unix")
+        let s:uname = system("uname")
+        let s:os_type = "linux"
+        let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
+        let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
+        if s:uname == "Darwin\n"
+            let s:os_type = "mac"
+            let g:python_host_prog = "/Users/ajdevseed/.pyenv/shims/python"
+            let g:python3_host_prog = "/Users/ajdevseed/.pyenv/shims/python3"
+        endif
+    endif
 " }
 
 " Keybindings {
