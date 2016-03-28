@@ -27,6 +27,8 @@ let mapleader="\<SPACE>"
 
   "Activate linting
   autocmd! BufWritePost * Neomake
+
+  let g:deoplete#enable_at_startup = 1
 " }
 
 " Search {
