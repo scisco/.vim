@@ -1,5 +1,41 @@
-execute pathogen#infect()
 
+" Plugin Manager {
+  " Note: Skip initialization for vim-tiny or vim-small.
+  if 0 | endif
+
+  if &compatible
+    set nocompatible " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath^=~/.vim/manager/neobundle.vim/
+
+  " Required:
+  call neobundle#begin(expand('~/.vim/bundle/'))
+
+   " Let NeoBundle manage NeoBundle
+   " Required:
+   NeoBundleFetch 'Shougo/neobundle.vim'
+
+   " My Bundles here:
+   " Refer to |:NeoBundle-examples|.
+   " Note: You don't set neobundle setting in .gvimrc!
+   NeoBundle 'ctrlpvim/ctrlp.vim'
+   NeoBundle 'davidhalter/jedi-vim'
+   NeoBundle 'scrooloose/nerdtree'
+   NeoBundle 'vim-airline/vim-airline'
+   NeoBundle 'freeo/vim-kalisi'
+   " NeoBundle 'tpope/vim-fugitive'
+   NeoBundle 'vim-airline/vim-airline-themes'
+   NeoBundle 'benekastah/neomake'
+   NeoBundle 'Shougo/deoplete.nvim'
+
+   call neobundle#end()
+
+   " If there are uninstalled bundles found on startup,
+   " this will conveniently prompt you to install them.
+   NeoBundleCheck
+" }
 
 if has('autocmd')
   filetype plugin indent on
@@ -28,9 +64,9 @@ let mapleader="\<SPACE>"
   "Activate linting
   autocmd! BufWritePost * Neomake
 
-  call remote#host#RegisterPlugin('python3', '/Users/ajdevseed/.config/nvim/bundle/deoplete.nvim/rplugin/python3/deoplete', [
-      \ {'sync': 1, 'name': '_deoplete', 'type': 'function', 'opts': {}},
-     \ ])
+  "call remote#host#RegisterPlugin('python3', '/Users/ajdevseed/.config/nvim/bundle/deoplete.nvim/rplugin/python3/deoplete', [
+  "    \ {'sync': 1, 'name': '_deoplete', 'type': 'function', 'opts': {}},
+  "   \ ])
 
   let g:deoplete#enable_at_startup = 1
 " }
